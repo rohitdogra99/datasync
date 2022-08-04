@@ -1,0 +1,29 @@
+name: device_features_7d
+feature_time_window: 7d
+input_parquet_location: /Users/rohitkumar/Desktop/test/ingestor/output/watch
+output_location: fs/device/7d
+# select name,description, expression from feature where name like 'device_%_7d' and expression  like '%double_sum("watch_length_hrs")%'
+sql: select account_id,
+            sum(watch_length_hrs) as total_watch_lenght_hrs_7d,
+            sum(case when device_platform ='Amazon Fire Tablet' then watch_length_ms else 0 end)/3600000 as AMAZON_FIRE_TABLET_HOURS_7d,
+            sum(case when device_platform ='Amazon Fire TV' then watch_length_ms else 0 end)/3600000 as AMAZON_FIRE_TV_HOURS_7d,
+            sum(case when device_platform='Android' then watch_length_ms else 0 end)/3600000 as ANDROID_HOURS_7d,
+            sum(case when device_platform='Android TV' then watch_length_ms else 0 end)/3600000 as ANDROID_TV_HOURS_7d,
+            sum(case when device_platform='Apple TV' then watch_length_ms else 0 end)/3600000 as APPLE_TV_HOURS_7d,
+            sum(case when device_platform='BBD' then watch_length_ms else 0 end)/3600000 as BBD_HOURS_7d,
+            sum(case when device_platform='Cablevision' then watch_length_ms else 0 end)/3600000 as CABLEVISION_HOURS_7d,
+            sum(case when device_platform='Canal+' then watch_length_ms else 0 end)/3600000 as CANAL_HOURS_7d,
+            sum(case when device_platform='Chromecast' then watch_length_ms else 0 end)/3600000 as CHROMECAST_HOURS_7d,
+            sum(case when device_platform='Deutsche Telekom' then watch_length_ms else 0 end)/3600000 as DEUTSCHETELEKOM_HOURS_7d,
+            sum(case when device_platform='LG' then watch_length_ms else 0 end)/3600000 as LG_HOURS_7d,
+            sum(case when device_platform='Movistar' then watch_length_ms else 0 end)/3600000 as MOVISTAR_HOURS_7d,
+            sum(case when device_platform='Orange' then watch_length_ms else 0 end)/3600000 as ORANGE_HOURS_7d,
+            sum(case when device_platform='PanasonicTV' then watch_length_ms else 0 end)/3600000 as PANASONICTV_HOURS_7d,
+            sum(case when device_platform='PS4' then watch_length_ms else 0 end)/3600000 as PS4_HOURS_7d,
+            sum(case when device_platform='Roku' then watch_length_ms else 0 end)/3600000 as ROKU_HOURS_7d,
+            sum(case when device_platform='Samsung' then watch_length_ms else 0 end)/3600000 as SAMSUNG_HOURS_7d,
+            sum(case when device_platform='Sky' then watch_length_ms else 0 end)/3600000 as SKY_HOURS_7d,
+            sum(case when device_platform='Telecentro' then watch_length_ms else 0 end)/3600000 as TELECENTRO_HOURS_7d,
+            sum(case when device_platform='Web' then watch_length_ms else 0 end)/3600000 as WEB_HOURS_7d,
+            sum(case when device_platform='Xbox' then watch_length_ms else 0 end)/3600000 as XBOX_HOURS_7d
+            from {table_name} group by 1;
