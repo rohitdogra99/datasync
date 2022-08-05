@@ -28,5 +28,4 @@ if __name__ == "__main__":
 
     shutil.rmtree('build')
     shutil.rmtree('dist')
-    shutil.rmtree('ingestor.egg-info')
-    
+    shutil.rmtree('datasync.egg-info')

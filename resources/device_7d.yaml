@@ -1,7 +1,7 @@
 name: device_features_7d
 feature_time_window: 7d
-input_parquet_location: /Users/rohitkumar/Desktop/test/ingestor/output/watch
-output_location: fs/device/7d
+input_parquet_location: s3://hulu-proton-airflow-deployment-nonprod/rohit/ingestor/data/watch/
+output_location: s3://hulu-proton-airflow-deployment-nonprod/rohit/datasync/fs/device/7d/
 # select name,description, expression from feature where name like 'device_%_7d' and expression  like '%double_sum("watch_length_hrs")%'
 sql: select account_id,
             sum(watch_length_hrs) as total_watch_lenght_hrs_7d,

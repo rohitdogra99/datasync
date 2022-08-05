@@ -61,4 +61,4 @@ def calculateFeatures(args, spark):
     output_df = spark.sql(resource_config.get('sql').format(table_name = resource_config.get('name')))
     print(output_df.take(200))
 
-    output_df.write.format('parquet').mode('overwrite').save(f'{resource_config.get("output_location")}/args.loaddate');
+    output_df.write.format('parquet').mode('overwrite').save(f'{resource_config.get("output_location")}/{args.loaddate}');
